@@ -1,0 +1,26 @@
+#network-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.sub-network {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.sub-network.active {
+    opacity: 1;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
