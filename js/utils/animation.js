@@ -3,16 +3,17 @@ export const zoomToNode = (network, nodeId, callback) => {
     
     network.moveTo({
         position: { x: position.x, y: position.y },
-        scale: 2.0,
+        scale: 15.0,
         animation: {
             duration: 1000,
             easingFunction: 'easeInOutQuad'
         }
     });
-
+    
     if (callback) {
         setTimeout(callback, 1000);
     }
+    
 };
 
 export const zoomOut = (network, callback) => {

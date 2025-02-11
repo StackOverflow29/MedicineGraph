@@ -6,7 +6,7 @@ export class NetworkManager {
         this.container = document.getElementById(containerId);
         this.subNetworksContainer = document.getElementById('sub-networks');
         this.currentSubNetwork = null;
-        this.initNetwork();
+        this.initNetwork(); 
     }
 
     initNetwork() {
