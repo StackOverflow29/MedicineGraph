@@ -1,8 +1,8 @@
 export const mainGraphData = {
     nodes: [
-        { id: 1, label: "Project A" },
-        { id: 2, label: "Project B" },
-        { id: 3, label: "Project C" }
+        { id: 1, label: "고혈압" },
+        { id: 2, label: "심부전" },
+        { id: 3, label: "심근경색" }
     ],
     edges: [
         { from: 1, to: 2 },
@@ -14,7 +14,7 @@ export const mainGraphData = {
 export const subGraphData = {
     1: {
         nodes: [
-            { id: 'a1', label: 'Task A1' },
+            { id: 'a1', label: '이뇨제 투여' },
             { id: 'a2', label: 'Task A2' },
             { id: 'a3', label: 'Task A3' }
         ],
