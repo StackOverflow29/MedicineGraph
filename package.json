@@ -1,0 +1,25 @@
+{
+  "name": "medicinegraph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "network.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StackOverflow29/MedicineGraph.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StackOverflow29/MedicineGraph/issues"
+  },
+  "homepage": "https://github.com/StackOverflow29/MedicineGraph#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2"
+  }
+}
