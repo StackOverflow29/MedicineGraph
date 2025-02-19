@@ -28,8 +28,7 @@ export class NodeDocumentManager {
       backgroundColor: "white",
       padding: "20px",
       borderRadius: "8px",
-      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)",
-      fontFamily: "'Nanum Gothic', sans-serif"
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.3)"
     });
     
     const header = document.createElement("h2");
@@ -60,7 +59,7 @@ export class NodeDocumentManager {
     this.modal.appendChild(content);
     document.body.appendChild(this.modal);
     
-    // Quill 에디터 초기화 (CDN을 통해 Quill이 로드되어 있어야 합니다)
+    // Quill 에디터 초기화 – index.html에 Quill CDN이 포함되어 있어야 합니다.
     this.quill = new Quill("#quill-editor", {
       theme: "snow",
       modules: {
@@ -78,7 +77,7 @@ export class NodeDocumentManager {
   openModal(nodeId, nodeLabel) {
     document.getElementById("node-document-header").innerText = `문서: ${nodeLabel}`;
     this.currentNodeId = nodeId;
-    // localStorage에서 저장된 문서를 불러옵니다.
+    // localStorage에서 저장된 문서 읽기
     const storedDoc = localStorage.getItem(`nodeDocument_${nodeId}`);
     this.quill.root.innerHTML = storedDoc || "";
     this.modal.style.display = "block";
@@ -86,7 +85,7 @@ export class NodeDocumentManager {
   
   saveDocument() {
     const content = this.quill.root.innerHTML;
-    // localStorage에 현재 노드의 문서를 저장합니다.
+    // localStorage에 문서 저장
     localStorage.setItem(`nodeDocument_${this.currentNodeId}`, content);
     alert("저장되었습니다.");
     this.closeModal();
