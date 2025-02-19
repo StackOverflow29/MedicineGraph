@@ -1,6 +1,5 @@
-export class NodeDocumentManager{
+export class NodeDocumentManager {
   constructor() {
-    // 초기 documents 객체는 사용하지 않고, 서버에서 직접 읽어올 예정
     this.currentNodeId = null;
     this.createModal();
   }
@@ -61,6 +60,7 @@ export class NodeDocumentManager{
     this.modal.appendChild(content);
     document.body.appendChild(this.modal);
     
+    // Quill 에디터 초기화 (CDN을 통해 Quill이 로드되어 있어야 합니다)
     this.quill = new Quill("#quill-editor", {
       theme: "snow",
       modules: {
@@ -78,42 +78,18 @@ export class NodeDocumentManager{
   openModal(nodeId, nodeLabel) {
     document.getElementById("node-document-header").innerText = `문서: ${nodeLabel}`;
     this.currentNodeId = nodeId;
-    // 서버에서 해당 노드의 문서를 불러옴
-    fetch(`/api/node/${nodeId}`)
-      .then(res => res.json())
-      .then(data => {
-        this.quill.root.innerHTML = data.document || "";
-        this.modal.style.display = "block";
-      })
-      .catch(err => {
-        console.error(err);
-        this.quill.root.innerHTML = "";
-        this.modal.style.display = "block";
-      });
+    // localStorage에서 저장된 문서를 불러옵니다.
+    const storedDoc = localStorage.getItem(`nodeDocument_${nodeId}`);
+    this.quill.root.innerHTML = storedDoc || "";
+    this.modal.style.display = "block";
   }
   
   saveDocument() {
     const content = this.quill.root.innerHTML;
-    fetch(`/api/node/${this.currentNodeId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ document: content })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        alert("저장되었습니다.");
-        this.closeModal();
-      } else {
-        alert("저장에 실패했습니다.");
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("서버 오류 발생");
-    });
+    // localStorage에 현재 노드의 문서를 저장합니다.
+    localStorage.setItem(`nodeDocument_${this.currentNodeId}`, content);
+    alert("저장되었습니다.");
+    this.closeModal();
   }
   
   closeModal() {
